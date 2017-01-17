@@ -38,6 +38,28 @@ public class Container<N extends Number> {
         return arr[index];
     }
 
+    public void add(N element) {
+        CheckSize();
+        arr[size++] = element;
+    }
+
+
+    public boolean add(N element, int index) {
+        if (index < 0 || index > size) return false;
+        CheckSize();
+        System.arraycopy(arr, index, arr, index + 1, size - index);
+        arr[index] = element;
+        ++size;
+        return true;
+    }
+
+
+    public boolean remove(int index) {
+        if (index < 0 || index >= size) return false;
+        System.arraycopy(arr, index + 1, arr, index, size - index - 1);
+        --size;
+        return true;
+    }
 
 
 }
